@@ -1,5 +1,5 @@
 # Brain-Master: LED Sequence Memorization Game
-Project for the AISL Vegas STEM program at UNLV.
+Project for the AISL Vegas STEM Lab program at UNLV.
 
 
 # Goal:
@@ -11,10 +11,10 @@ To utilize a digital system for saving and retrieving data as part of the game l
 3) The group will create game logic that displays different patterns.
 
 # Opportunity:
-This project offers a group to design and implement game logic using a microcontroller. The project provides visually engaging experience to test players' reflexes.
+This project offers a group to design and implement game logic using a microcontroller. The project provides a visually engaging experience to test players' reflexes.
 
 # Mentor requirement:
 ESP32 programming
 
-# Mentor: 
+# Mentor:
 Robert Pearce

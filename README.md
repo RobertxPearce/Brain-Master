@@ -18,3 +18,7 @@ ESP32 programming
 
 # Mentor:
 Robert Pearce
+
+# Circuit Diagram:
+![Circuit Design](https://github.com/RobertxPearce/Brain-Master/assets/102342225/5b2c2a7d-53c7-47e5-a11e-70b937592eb1)
+

@@ -29,13 +29,13 @@ const int BUTTON_YELLOW  = 9;
 const int BUZZER = 11;
 
 // Array Definitions
-int ledPins[4] = {LED_RED, LED_GREEN, LED_BLUE, LED_YELLOW};
-int buttonPins[4] = {BUTTON_RED, BUTTON_GREEN, BUTTON_BLUE, BUTTON_YELLOW};
-int gamePattern[20]; // Stores the sequence of LEDs
-int playerInput[20]; // Stores the player's sequence
+int ledPins[4] = {LED_RED, LED_GREEN, LED_BLUE, LED_YELLOW};                  // Array to hold all the LED pin numbers.
+int buttonPins[4] = {BUTTON_RED, BUTTON_GREEN, BUTTON_BLUE, BUTTON_YELLOW};   // Array to hold all the button pin numbers.
+int gamePattern[20];                                                          // Stores the sequence of LEDs.
+int playerInput[20];                                                          // Stores the player's sequence.
 
 // Game Variables
-int gameLength = 5; // current length of the game sequence
+int gameLength = 5; // current length of the game patter (# of LEDs lit up).
 
 ///-------------------------------------------
 ///         FUNCTION PROTOTYPES
@@ -55,42 +55,41 @@ void playSequence();                      // Function to play pattern.
 ///-------------------------------------------
 
 void setup() {
-    Serial.begin(9600);
-    for (int i = 0; i < 4; i++) {       // Initialize all LED and button pins.
-        pinMode(ledPins[i], OUTPUT);    // Initialize LED pins to output.
-        pinMode(buttonPins[i], INPUT);  // Initialize button pins to input.
-        //pinMode(buttonPins[i], INPUT_PULLUP);
-    }
-    startGame();                        // Call start game indicator
+  Serial.begin(9600);                         // Set serial to 9600.
+  for (int i = 0; i < 4; i++) {               // For loop to iterate through pin arrays.
+      pinMode(ledPins[i], OUTPUT);            // Initialize LED pins to output.
+      pinMode(buttonPins[i], INPUT_PULLUP);   // Initialize button pins to input.
+  }
+  startGame();                                // Call to start game function to que start.
 }
 
 ///-------------------------------------------
 
 void loop() {
-    int maxRounds = 4;                                  // Max amount of rounds.
-    gameLength = 1;                                     // Game length (leds lit up).
-    createPattern();                                    // Call to function to create pattern.
+  int maxRounds = 3;                                    // Number of rounds per game.
+  gameLength = 1;                                       // Intial pattern will have 1 LED lit up.
+  createPattern();                                      // Generate the first pattern.
 
-    for (int round = 1; round <= maxRounds; round++) {  // For loop controlled by max rounds.
-        Serial.print("Round: ");                        // Print round number.
-        Serial.println(round);
-        playSequence();                                 // Display the sequence to the player.
-        if (!readPlayerInput()) {                       // Check player input against the sequence.
-            Serial.println("Game Over!");               // Print game over if incorrect.
-            gameOver();                                 // Call to function to print game over sequence.
-            break;                                      // Stop the game.
-        }
-        Serial.println("Correct!");                     // Print player won.
-        if (round < maxRounds) {                        // Check if max round was reached.
-            gameLength++;                               // If not increment game lenght (amt of LEDs lit up).
-            createPattern();                            // Call to function to create new pattern.
-        } else {                                        // Else if max rounds has been reached.
-            gameWon();                                  // Call to function to print game won sequence.
-            break;                                      // Stop the game after winning.
-        }
+  for (int round = 1; round <= maxRounds; round++) {    // For loop to iterate until max round amt it met.
+    Serial.print("Round ");                             // Print round lable.
+    Serial.println(round);                              // Print round number.
+    playSequence();                                     // Display the pattern on LEDs.
+    if (!readPlayerInput()) {                           // Check player input against the pattern.
+      Serial.println("Game Over!");                     // If doesnt match print game over.
+      gameOver();                                       // Call to function to display game over scene.
+      break;                                            // Break out of loop and stop game.
     }
-    delay(5000);                                        // Delay before restarting game.
-    setup();                                            // Restart the game.
+    Serial.println("Correct!");                         // If matches print correct.
+    if (round < maxRounds) {                            // Check if max rounds has been met.
+      gameLength++;                                     // If not increase amount of LEDs lit up.
+      createPattern();                                  // Create a new pattern for the next round.
+    } else {                                            // If max round has been met.
+      gameWon();                                        // Indicate winning the game.
+      break;                                            // Stop the game after winning.
+    }
+  }
+  delay(5000);                                          // Wait 5 seconds before restarting.
+  setup();                                              // Restart the game.
 }
 
 ///-------------------------------------------
@@ -98,96 +97,110 @@ void loop() {
 ///-------------------------------------------
 
 void startGame() {
-    Serial.println("Get ready to play!");   // Print message to alert game will start.
-    for (int i = 0; i < 4; i++) {           // for Loop to light LEDs up.
-        digitalWrite(ledPins[i], HIGH);     // Set LED pin at index to high.
-        delay(1000);                        // Delay for 1 second.
-        digitalWrite(ledPins[i], LOW);      // Set LED pin at index to low.
-    }
-    playTone(NOTE_C5, 1000);                // Play tone for one second.
+  Serial.println("Get ready!");       // Print message to let user know game is starting.
+  for (int i = 0; i < 4; i++) {       // For loop to iterate through led array.
+    digitalWrite(ledPins[i], LOW);    // Set LED pins to low.
+    delay(250);                       // Delay
+    playTone(NOTE_C5, 250);           // Play starting tone.
+    digitalWrite(ledPins[i], HIGH);   // Set LED pins to high.
+  }
+  delay(500);                         // Delay before start.
 }
 
 ///-------------------------------------------
 
 void gameOver() {
-    for (int i = 0; i < 4; i++) {         // Flash all LEDs to indicate game over.
-        digitalWrite(ledPins[i], HIGH);   // Set pin at index to high.
-        playTone(NOTE_A4, 1000);          // Play tone.
-        delay(1000);                      // Delay for 1 second. 
-        digitalWrite(ledPins[i], LOW);    // Set pin at index to low.
-    }
+  for (int i = 0; i < 4; i++) {       // For loop to iterate through LED array.
+    digitalWrite(ledPins[i], LOW);    // Flash all LEDs to indicate game over
+  }
+  playTone(NOTE_A4, 200);             // Play note A4.
+  playTone(NOTE_G4, 200);             // Play note G4.
+  playTone(NOTE_F4, 200);             // Play note F4.
+  playTone(NOTE_E4, 200);             // Play note E4.
+  playTone(NOTE_D4, 200);             // Play note D4.
+
+  delay(1000);                        // Delay
+  for (int i = 0; i < 4; i++) {       // For loop to iterate through LED array.
+    digitalWrite(ledPins[i], HIGH);   // Set LED pins to High.
+  }
 }
 
 ///-------------------------------------------
 
 void gameWon() {
-    Serial.println("You've won the game!");   // Print that the player has won.
-    for (int i = 0; i < 4; i++) {             // Flash LEDs in a celebratory pattern
-        digitalWrite(ledPins[i], HIGH);       // Turn LED at index on.
-        delay(1000);                          // Delay for 1 second.
-        digitalWrite(ledPins[i], LOW);        // Turn LED at index off.
-        delay(1000);                          // Delay for 1 second.
-    }
-    playTone(NOTE_C5, 500);                   // Play note C5.
-    playTone(NOTE_D4, 500);                   // Play note D4.
-    playTone(NOTE_E4, 500);                   // Play note E4.
-}
-
-///-------------------------------------------
-
-void playTone(int note, int duration) {
-    tone(BUZZER, note, duration);
-    delay(duration + 50);
+  Serial.println("You've won the game!"); // Print that user won the game.
+  for (int i = 0; i < 4; i++) {           // Flash LEDs in a celebratory pattern.
+    digitalWrite(ledPins[i], LOW);        // Set LED pins to low.
+    delay(250);                           // Delay
+    digitalWrite(ledPins[i], HIGH);       // Set LED pins to high.
+    delay(250);                           // Delay
+  }
+  playTone(NOTE_C5, 500);                 // Play note C5.
+  playTone(NOTE_D4, 500);                 // Play note D4.
+  playTone(NOTE_E4, 500);                 // Play note E4.
+  playTone(NOTE_C5, 500);                 // Play note C5.
+  playTone(NOTE_D4, 500);                 // Play note D4.
+  playTone(NOTE_E4, 500);                 // Play note E4.
+  playTone(NOTE_C5, 1000);                // Play note C5.
 }
 
 ///-------------------------------------------
 
 void createPattern() {
   randomSeed(analogRead(1));              // Set random seed.
-  for (int i = 0; i < gameLength; i++) {  // For loop based on game length variable.
-    gamePattern[i] = random(1, 5);        // Set index to random LED pin (2-5).
+  for (int i = 0; i < gameLength; i++) {  // For loop based on game length.
+    gamePattern[i] = random(1, 5);        // Play random pin number in pattern array.
   }
 }
 
 ///-------------------------------------------
 
 void playSequence() {
-    for (int i = 0; i < gameLength; i++) {                    // For loop to iterate based on game length.
-        digitalWrite(ledPins[gamePattern[i] - 1], HIGH);      // Turn on LED.
-        playTone(NOTE_D4 + (gamePattern[i] - 1) * 100, 700);  // Play a tone.
-        delay(800); // Longer delay between flashes           // Delay 
-        digitalWrite(ledPins[gamePattern[i] - 1], LOW);       // Turn off LED.
-        delay(500);                                           // Delay between LED flashes.
-    }
+  for (int i = 0; i < gameLength; i++) {                  // For loop based on game lenth.
+    digitalWrite(ledPins[gamePattern[i] - 1], LOW);       // Turn on LED.
+    playTone(NOTE_D4 + (gamePattern[i] - 1) * 100, 500);  // Play a tone.
+    delay(600);                                           // Delay
+    digitalWrite(ledPins[gamePattern[i] - 1], HIGH);      // Turn off LED.
+    delay(400);                                           // Delay
+  }
 }
 
 ///-------------------------------------------
 
 bool readPlayerInput() {
-    int inputIndex = 0;                                         // Variable to track index of input.
+  int inputIndex = 0;                                // Variable to track input index.
 
-    while (inputIndex < gameLength) {                           // Loop while input index is less than game length.
-        for (int j = 0; j < 4; j++) {                           // For loop to iterate through button array.
-            if (digitalRead(buttonPins[j]) == LOW) {            // Check if button was pressed.
-                delay(10);                                      // Debounce delay
-                if (digitalRead(buttonPins[j]) == LOW) {        // Confirm button press
-                    //digitalWrite(ledPins[j], LOW);            // Feedback: Turn on LED
-                    //playTone(NOTE_D4 + j * 100, 300);         // Feedback: Play a tone
+  while (inputIndex < gameLength) {                  // Loop while input index is less than game length.
+    for (int j = 0; j < 4; j++) {                    // For loop to iterate through button array.
+      if (digitalRead(buttonPins[j]) == LOW) {       // Check if button has been pressed.
+        delay(10);                                   // Debounce delay.
+        if (digitalRead(buttonPins[j]) == LOW) {     // Confirm button press.
+          digitalWrite(ledPins[j], LOW);             // Feedback: Turn on LED.
+          playTone(NOTE_D4 + j * 100, 300);          // Feedback: Play a tone.
 
-                    if (j + 1 != gamePattern[inputIndex]) {     // Check if the pressed button matches the game pattern       
-                        //digitalWrite(ledPins[j], HIGH);       // Turn off LED
-                        return false; // Incorrect input
-                    }
-                    // Correct button press, move to next input
-                    inputIndex++;                               // Go to next input index.
-                    while (digitalRead(buttonPins[j]) == LOW);  // Wait for button release
-                    //digitalWrite(ledPins[j], HIGH);           // Turn off LED
-                    delay(300);                                 // Next input delay
-                }
-            }
+          // Check if the pressed button matches the game pattern
+          if (j + 1 != gamePattern[inputIndex]) {    // Check if button press matches pattern.
+            digitalWrite(ledPins[j], HIGH);          // Turn off LED.
+            return false;                            // Incorrect input.
+          }
+
+          // Correct button press, move to next input
+          inputIndex++;                              // Increment input index.
+          while (digitalRead(buttonPins[j]) == LOW); // Wait for button release.
+          digitalWrite(ledPins[j], HIGH);            // Turn off LED.
+          delay(300);                                // Next input delay.
         }
+      }
     }
-    return true;                                                // Correct input for full sequence
+  }
+  return true;                                       // Correct input for full sequence.
+}
+
+///-------------------------------------------
+
+void playTone(int note, int duration) {
+  tone(BUZZER, note, duration);         // Play param note for param duration.
+  delay(duration + 50);                 // Delay
 }
 
 ///-------------------------------------------

@@ -15,18 +15,31 @@ const int NOTE_G4 = 392;
 const int NOTE_A4 = 440;
 const int NOTE_C5 = 523;
 
-// LED and Button Pin Definitions.
-const int LED_RED        = 2;
-const int LED_GREEN      = 3;
-const int LED_BLUE       = 4;
-const int LED_YELLOW     = 5;
-const int BUTTON_RED     = 6;
-const int BUTTON_GREEN   = 7;
-const int BUTTON_BLUE    = 8;
-const int BUTTON_YELLOW  = 9;
+// LED and Button Pin Definitions for UNO.
+// const int LED_RED        = 2;
+// const int LED_GREEN      = 3;
+// const int LED_BLUE       = 4;
+// const int LED_YELLOW     = 5;
+// const int BUTTON_RED     = 6;
+// const int BUTTON_GREEN   = 7;
+// const int BUTTON_BLUE    = 8;
+// const int BUTTON_YELLOW  = 9;
 
-// Buzzer pin definition
-const int BUZZER = 11;
+// LED and Button Pin Definitions for FireBeetle ESP32.
+const int LED_RED        = 2;
+const int LED_GREEN      = 13;
+const int LED_BLUE       = 14;
+const int LED_YELLOW     = 0;
+const int BUTTON_RED     = 12;
+const int BUTTON_GREEN   = 4;
+const int BUTTON_BLUE    = 16;
+const int BUTTON_YELLOW  = 17;
+
+// Buzzer pin definition for UNO
+// const int BUZZER = 11;
+
+// Buzzer pin definition for UNO
+const int BUZZER = 25;
 
 // Array Definitions
 int ledPins[4] = {LED_RED, LED_GREEN, LED_BLUE, LED_YELLOW};                  // Array to hold all the LED pin numbers.

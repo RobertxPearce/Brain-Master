@@ -35,10 +35,10 @@ const int BUTTON_GREEN   = 4;
 const int BUTTON_BLUE    = 16;
 const int BUTTON_YELLOW  = 17;
 
-// Buzzer pin definition for UNO
+// Buzzer pin definition for UNO.
 // const int BUZZER = 11;
 
-// Buzzer pin definition for UNO
+// Buzzer pin definition for FireBeetle ESP32.
 const int BUZZER = 25;
 
 // Array Definitions

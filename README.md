@@ -5,7 +5,7 @@ Project for the AISL Vegas STEM Lab program at UNLV.
 To utilize a digital system for saving and retrieving data as part of the game logic.
 
 # Activity:
-1) A group of students will program multiple switches for a physical computing game.
+1) Students will program multiple switches for a physical computing game.
 2) The group will control multiple LEDs corresponding to the input switches.
 3) The group will create game logic that displays different patterns.
 
@@ -20,7 +20,8 @@ Dr. SJ
 ![Circuit Design](https://github.com/RobertxPearce/Brain-Master/assets/102342225/5b2c2a7d-53c7-47e5-a11e-70b937592eb1)
 
 # Project Demonstration:
-https://github.com/RobertxPearce/Brain-Master/assets/102342225/ef629a6c-9fae-4a40-9616-71a908482a60
+https://github.com/RobertxPearce/Brain-Master/assets/102342225/9943e205-8b40-4807-a804-8d89dc83e8fe
+
 
 # Group Photo:
 

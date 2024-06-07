@@ -10,8 +10,8 @@ Project for the AISL Vegas STEM Lab program at UNLV.
 Memory games are often used as an exercise to improve memory, concentration, and pattern recognition skills. Creating this memory game can be a way to develop and enhance these abilities. Creating a memory game allows for innovation and creativity in game design. We can experiment with different features, levels, and gameplay mechanics to make their game unique and engaging.
 
 # Mentor:
-Robert Pearce
-Dr. SJ
+- Robert Pearce
+- Dr. SJ
 
 # Circuit Diagram:
 ![Circuit Design](https://github.com/RobertxPearce/Brain-Master/assets/102342225/5b2c2a7d-53c7-47e5-a11e-70b937592eb1)

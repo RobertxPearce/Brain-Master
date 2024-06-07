@@ -19,7 +19,5 @@ Memory games are often used as an exercise to improve memory, concentration, and
 # Project Demonstration:
 https://github.com/RobertxPearce/Brain-Master/assets/102342225/9943e205-8b40-4807-a804-8d89dc83e8fe
 
-
 # Group Photo:
-
-
+![IMG_1646](https://github.com/RobertxPearce/Brain-Master/assets/102342225/02f1aad2-f89f-457d-b559-cc4c5d91394a)

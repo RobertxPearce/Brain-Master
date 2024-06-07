@@ -1,9 +1,6 @@
 # Brain-Master: LED Sequence Memorization Game
 Project for the AISL Vegas STEM Lab program at UNLV.
 
-# Goal:
-To utilize a digital system for saving and retrieving data as part of the game logic.
-
 # Activity:
 1) Students will program multiple switches for a physical computing game.
 2) The group will control multiple LEDs corresponding to the input switches.

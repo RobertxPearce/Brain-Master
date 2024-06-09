@@ -21,6 +21,5 @@ https://github.com/RobertxPearce/Brain-Master/assets/102342225/9943e205-8b40-480
 
 # Group Photo:
 ![IMG_1646](https://github.com/RobertxPearce/Brain-Master/assets/102342225/02f1aad2-f89f-457d-b559-cc4c5d91394a)
-![vegas-stem-camp](https://github.com/RobertxPearce/Brain-Master/assets/102342225/6050c1fe-3ec3-4471-9b39-85e4b56db91e)
 ![IMG_1668](https://github.com/RobertxPearce/Brain-Master/assets/102342225/02980bda-f46e-4e29-988e-c637d3aa5c3e)
-
+![vegas-stem-camp](https://github.com/RobertxPearce/Brain-Master/assets/102342225/6050c1fe-3ec3-4471-9b39-85e4b56db91e)

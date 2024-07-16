@@ -1,5 +1,5 @@
 # Brain-Master: LED Sequence Memorization Game
-Project for the AISL Vegas STEM Lab program at UNLV.
+Project for the NSF-funded Vegas STEM Lab program at UNLV.
 
 # Activity:
 1) Students will program multiple switches for a physical computing game.
